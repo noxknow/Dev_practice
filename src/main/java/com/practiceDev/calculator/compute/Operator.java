@@ -1,5 +1,6 @@
 package com.practiceDev.calculator.compute;
 
+import java.util.Arrays;
 import java.util.function.BiFunction;
 
 public enum Operator {
@@ -13,8 +14,26 @@ public enum Operator {
     private final BiFunction<Long, Long, Long> expression;
 
     Operator(String operator, int priority, BiFunction<Long, Long, Long> expression) {
+
         this.operator = operator;
         this.priority = priority;
         this.expression = expression;
+    }
+
+    public static Operator getOperator(String op) {
+
+        return Arrays.stream(Operator.values())
+                .filter(o -> o.operator.equals(op))
+                .findFirst()
+                .get();
+    }
+
+    public long calculate(long num1, long num2) {
+
+        return expression.apply(num1, num2);
+    }
+
+    public int getPriority() {
+        return priority;
     }
 }
