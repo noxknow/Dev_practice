@@ -93,12 +93,14 @@ classDiagram
   }
 
   class Menu {
+    <<enumeration>>
     -number: int
     +getNumber(): int
     +getMenu(int): Menu
   }
 
   class Validate {
+    <<interface>>
     +isValidMenu(String): boolean
     +isValidExpression(String): boolean
   }
@@ -111,11 +113,13 @@ classDiagram
   }
 
   class Input {
+    <<interface>>
     +selectMenu(String): String
     +input(): String
   }
 
   class Output {
+    <<interface>>
     +printMenu(String): void
     +printCalculateResult(long): void
     +printSavedResults(Repository): void
@@ -134,6 +138,7 @@ classDiagram
   }
 
   class Repository {
+    <<interface>>
     +saveResult(String, long): void
     +showSavedResults(): void
   }
@@ -145,6 +150,7 @@ classDiagram
   }
 
   class Compute {
+    <<interface>>
     +convertToToken(String): List<String>
     +convertTokenToPostfix(List<String>): List<String>
     +calculate(List<String>): long
@@ -160,6 +166,7 @@ classDiagram
   }
 
   class Operator {
+    <<enumeration>>
     +getOperator(String): Operator
     +calculate(long, long): long
     +getPriority(): int
