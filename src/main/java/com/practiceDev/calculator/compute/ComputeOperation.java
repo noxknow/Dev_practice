@@ -39,8 +39,8 @@ public class ComputeOperation implements Compute {
             if (token.matches(pattern)) {
                 stack.push(Long.parseLong(token));
             } else {
+                long secondNumber = stack.pop(); // pop의 경우 나중에 들어온 것 부터 나오기 때문에 second가 먼저 나온다.
                 long firstNumber = stack.pop();
-                long secondNumber = stack.pop();
                 Operator operator = Operator.getOperator(token);
 
                 stack.push(operator.calculate(firstNumber, secondNumber));
