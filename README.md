@@ -64,6 +64,123 @@
 
 https://github.com/noxknow/Dev_practice/assets/122594223/53705a60-43d8-4f76-ab5b-50277b8843c0
 
+```mermaid
+classDiagram
+  class Main {
+    +main(String[] args)
+  }
+
+  class Calculator {
+    -input: Input
+    -output: Output
+    -validate: Validate
+    -compute: Compute
+    -repository: Repository
+    +Calculator(Input, Output, Validate, Compute, Repository)
+    +run(): void
+    +printMenu(): void
+    +getInput(): String
+    +validateInput(String): boolean
+    +selectMenu(String): Menu
+    +runByMenu(ComputeManager, Menu): void
+  }
+
+  class ComputeManager {
+    -state: boolean
+    +ComputeManager(boolean)
+    +getState(): boolean
+    +setState(boolean): void
+  }
+
+  class Menu {
+    -number: int
+    +getNumber(): int
+    +getMenu(int): Menu
+  }
+
+  class Validate {
+    +isValidMenu(String): boolean
+    +isValidExpression(String): boolean
+  }
+
+  class ValidateExpression {
+    -expressionPattern: String
+    -menuPattern: String
+    +isValidMenu(String): boolean
+    +isValidExpression(String): boolean
+  }
+
+  class Input {
+    +selectMenu(String): String
+    +input(): String
+  }
+
+  class Output {
+    +printMenu(String): void
+    +printCalculateResult(long): void
+    +printSavedResults(Repository): void
+  }
+
+  class ConsoleInput {
+    -br: BufferedReader
+    +selectMenu(String): String
+    +input(): String
+  }
+
+  class ConsoleOutput {
+    +printMenu(String): void
+    +printCalculateResult(long): void
+    +printSavedResults(Repository): void
+  }
+
+  class Repository {
+    +saveResult(String, long): void
+    +showSavedResults(): void
+  }
+
+  class ArrayListRepository {
+    -results: List<String>
+    +saveResult(String, long): void
+    +showSavedResults(): void
+  }
+
+  class Compute {
+    +convertToToken(String): List<String>
+    +convertTokenToPostfix(List<String>): List<String>
+    +calculate(List<String>): long
+    +compute(String): long
+  }
+
+  class ComputeOperation {
+    +convertToToken(String): List<String>
+    +convertTokenToPostfix(List<String>): List<String>
+    +calculate(List<String>): long
+    +compute(String): long
+    -isLowerThanStack(String, String): boolean
+  }
+
+  class Operator {
+    +getOperator(String): Operator
+    +calculate(long, long): long
+    +getPriority(): int
+  }
+
+  Main --> Calculator
+  Calculator --> Input
+  Calculator --> Output
+  Calculator --> Validate
+  Calculator --> Compute
+  Calculator --> Repository
+  Calculator --> ComputeManager
+  Calculator --> Menu
+  Validate <-- ValidateExpression
+  Output <-- ConsoleOutput
+  Input <-- ConsoleInput
+  Repository <-- ArrayListRepository
+  Compute <-- ComputeOperation
+  Compute <-- Operator
+```
+
 ## 🤔 Input과 Output을 Interface로 구현하는 이유는?
 
 인터페이스를 사용하는 주요 이유는 추상화, 분리, 유연성, 테스트 용이성, 의존성 관리, 코드 재사용성을 향상시키기 위함. 따라서 인터페이스를 통해 Input과 Output을 정의하고 구현하는 것은 소프트웨어의 품질과 유지보수성을 향상시키는 데 도움이 된다.
