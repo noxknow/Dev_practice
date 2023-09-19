@@ -1,5 +1,7 @@
 https://github.com/noxknow/Dev_practice/assets/122594223/53705a60-43d8-4f76-ab5b-50277b8843c0
 
+## 🔹 클래스 다이어그램
+
 ```mermaid
 classDiagram
   class Main {
